@@ -10,6 +10,19 @@ import Foundation
 import UIKit
 class ProgressView {
     
+    private var gapWidthRate:CGFloat = 0.03
+    
+    /**
+     * ステージ間隔の幅を決める値のセッターメソッド
+     * @param ステージ間隔の幅を決める値(0.00 ~ 1.00)
+     */
+    func setGapWidthRate(rate : CGFloat) {
+        if ( rate > 1 || rate < 0 ){
+            return
+        }
+        
+        self.gapWidthRate = rate
+    }
     
     /**
      * dicinaryの値の合計値を計算して返す。
@@ -62,7 +75,7 @@ class ProgressView {
      * @return ステージの間隔値
      */
     private func calculateGapWithTotalValue(sum :Int) -> CGFloat {
-        let gap = CGFloat(sum) * 0.05;
+        let gap = CGFloat(sum) * gapWidthRate;
         return gap
     }
     
