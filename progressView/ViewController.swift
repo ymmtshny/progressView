@@ -11,13 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIView!
-    let stage1 = ["2016-04-01" , "2016-04-30"]
-    let stage2 = ["2016-05-01" , "2016-05-15"]
-    let stage3 = ["2016-05-16" , "2016-06-30"]
-    let stage4 = ["2016-08-01" , "2016-08-30"]
     
     //total 100 [stageNumber:%]
-    let plantInfo: Dictionary = ["0":5,
+    let plantInfo: Dictionary = ["0": 5,
                                  "1": 35,
                                  "2": 25,
                                  "3": 25,
@@ -30,39 +26,51 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // "2015-10-06T15:42:34Z"
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone(name: "UTC")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        print ( dateFormatter.dateFromString( stage1[0]) )
-        let date1 = dateFormatter.dateFromString( stage1[0])
-        //---------------------------------------------------
-        
-        //       let view = UIView(frame: CGRectMake(0,0,w,h))
-        
-        
-        
         
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let count = plantInfo.keys.count
-        var sum = calculateSum(plantInfo)
-        sum = sum + (count - 1) * Int(gap)
+        
+        
+        //ステージ間隔を含む合計値
+        let sum = calculateSum(plantInfo, gap: gap)
+        
+        //値１に対する増加率
         let xUnit = CGRectGetWidth(progressView.frame) / CGFloat(sum)
         
-        
         //currentProgress以降を灰色でカバー
-        let grayView = UIView(frame:CGRectMake(currentProgress * xUnit, 0, CGRectGetWidth(progressView.frame) -  currentProgress * xUnit, CGRectGetHeight(progressView.frame)))
-        grayView.backgroundColor = UIColor.grayColor()
-        progressView.addSubview(grayView)
-        
+        self.setupCurrentProgress(self.currentProgress, xUnit: xUnit, baseView: progressView)
         
         //ギャップviewを追加
-        let keyArray = Array(plantInfo.keys).sort()
+        self.setupGapView(self.plantInfo, gap: self.gap, xUnit: xUnit, sum: sum)
+    }
+    
+    private func calculateSum(dictinary: [String: Int], gap: CGFloat)-> Int {
+        let count = dictinary.keys.count
+        var sum: Int = 0;
+        for (_, value) in dictinary {
+            sum += value
+        }
+        
+        sum = sum + (count - 1) * Int(gap)
+        
+        return sum
+    }
+    
+    private func setupCurrentProgress(currentProgress: CGFloat, xUnit:CGFloat, baseView:UIView) {
+        
+        let grayView = UIView(frame:CGRectMake(currentProgress * xUnit, 0, CGRectGetWidth(baseView.frame) -  currentProgress * xUnit, CGRectGetHeight(baseView.frame)))
+        grayView.backgroundColor = UIColor.grayColor()
+        baseView.addSubview(grayView)
+        
+    }
+    
+    private func setupGapView(dictinary: [String: Int], gap: CGFloat, xUnit:CGFloat, sum:Int) {
+        
+        let keyArray = Array(dictinary.keys).sort()
         var point: CGFloat = 0
-        for index in 0...(count - 2) {
+        for index in 0...(keyArray.count - 2) {
             
             let key = keyArray[index]
             
@@ -81,15 +89,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func calculateSum(dictinary: [String: Int])-> Int {
-        
-        var sum: Int = 0;
-        for (_, value) in dictinary {
-            sum += value
-        }
-        
-        return sum
-    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -100,36 +100,3 @@ class ViewController: UIViewController {
 }
 
 
-extension NSDate {
-    func yearsFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(.Year, fromDate: date, toDate: self, options: []).year
-    }
-    func monthsFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(.Month, fromDate: date, toDate: self, options: []).month
-    }
-    func weeksFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: date, toDate: self, options: []).weekOfYear
-    }
-    func daysFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(.Day, fromDate: date, toDate: self, options: []).day
-    }
-    func hoursFrom(date: NSDate) -> Int {
-        return NSCalendar.currentCalendar().components(.Hour, fromDate: date, toDate: self, options: []).hour
-    }
-    func minutesFrom(date: NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: self, options: []).minute
-    }
-    func secondsFrom(date: NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
-    }
-    func offsetFrom(date: NSDate) -> String {
-        if yearsFrom(date)   > 0 { return "\(yearsFrom(date))y"   }
-        if monthsFrom(date)  > 0 { return "\(monthsFrom(date))M"  }
-        if weeksFrom(date)   > 0 { return "\(weeksFrom(date))w"   }
-        if daysFrom(date)    > 0 { return "\(daysFrom(date))d"    }
-        if hoursFrom(date)   > 0 { return "\(hoursFrom(date))h"   }
-        if minutesFrom(date) > 0 { return "\(minutesFrom(date))m" }
-        if secondsFrom(date) > 0 { return "\(secondsFrom(date))s" }
-        return ""
-    }
-}
