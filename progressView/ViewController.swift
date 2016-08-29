@@ -30,9 +30,11 @@ class ViewController: UIViewController {
                          "3":50,
                          "4":20]
         
-        let current = CGFloat(40)
+        let current = CGFloat(70)
         
-        ProgressView().setup(data:dictinary,current: current,baseView:progressView)
+        let test = ProgressView()
+        test.setup(data:dictinary,current: current,baseView:progressView)
+        test.addArrowOnCurrentProgress()
         
         
         
