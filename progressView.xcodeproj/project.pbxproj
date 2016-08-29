@@ -13,6 +13,7 @@
 		C5C562681D74185A000EB639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5C562671D74185A000EB639 /* Assets.xcassets */; };
 		C5C5626B1D74185A000EB639 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5C562691D74185A000EB639 /* LaunchScreen.storyboard */; };
 		C5C562731D741870000EB639 /* GradationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C562721D741870000EB639 /* GradationView.swift */; };
+		C5C5627B1D74CA2D000EB639 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C5627A1D74CA2D000EB639 /* ProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C5C5626A1D74185A000EB639 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5C5626C1D74185A000EB639 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5C562721D741870000EB639 /* GradationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradationView.swift; sourceTree = "<group>"; };
+		C5C5627A1D74CA2D000EB639 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				C5C562601D74185A000EB639 /* AppDelegate.swift */,
 				C5C562721D741870000EB639 /* GradationView.swift */,
+				C5C5627A1D74CA2D000EB639 /* ProgressView.swift */,
 				C5C562621D74185A000EB639 /* ViewController.swift */,
 				C5C562641D74185A000EB639 /* Main.storyboard */,
 				C5C562671D74185A000EB639 /* Assets.xcassets */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C562631D74185A000EB639 /* ViewController.swift in Sources */,
+				C5C5627B1D74CA2D000EB639 /* ProgressView.swift in Sources */,
 				C5C562611D74185A000EB639 /* AppDelegate.swift in Sources */,
 				C5C562731D741870000EB639 /* GradationView.swift in Sources */,
 			);
@@ -292,6 +296,7 @@
 				C5C562711D74185A000EB639 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
