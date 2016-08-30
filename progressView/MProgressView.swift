@@ -11,72 +11,71 @@ import UIKit
 
 class MProgressView{
     
-    func setup(data data:[CGFloat], baseView: UIView) {
+    private var lablePoints = [CGFloat]()
+    private var currentValue:CGFloat = 0
+    private var data = [CGFloat]()
+    private let gap:CGFloat = 5
+    private var sum:CGFloat = 0
+    private var currnetLabel: UILabel?  = nil
+    
+    func setup(data data:[CGFloat], current:CGFloat, baseView: UIView) {
         
-        var data:[CGFloat] = data //[10, 20, 15, 35, 20]//　合計100
+        self.data = data 
         let gapCount = data.count - 1
-        let gap:CGFloat = 1
         
-        var sum:CGFloat = 0
+        
         for value in data {
-            sum += value
+            self.sum += value
         }
         
-        sum = sum +  gap * CGFloat(gapCount)
+        self.sum = self.sum + gap * CGFloat(gapCount)
+        
+        let xUnit = CGRectGetWidth(baseView.frame) / sum
+        self.currentValue = current * xUnit
         
         for index in 0...data.count - 1 {
-            data[index] = data[index] * 100 / sum
+            self.data[index] = data[index] * xUnit
         }
         
-        print(data)
-        
-        var beginValue = CGFloat(0)
-        for value in data {
-            
-            let frame = CGRectMake(CGRectGetWidth(baseView.frame) * (beginValue) / 100 ,
-                                   50,
-                                   CGRectGetWidth(baseView.frame) * value / 100,
-                                   8)
-            
-            let test = progressView(beginValue:beginValue ,
-                                    endValue:(beginValue + value),
-                                    frame :frame)
     
-            beginValue = beginValue + value + gap
+        var str =  0
+        var colorCounter:CGFloat = 0
+        for index in 0...self.data.count - 1  {
             
-            baseView.addSubview(test)
+            for point in Int(str)...Int(self.data[index]) + str {
+                
+                let view = UIView(frame: CGRectMake(CGFloat(point), 0, xUnit, CGRectGetHeight(baseView.frame)))
+                
+                if(point > Int(self.currentValue) + (index ) * Int(gap * xUnit ) ) {
+                    view.backgroundColor = UIColor.grayColor()
+                    
+                } else if(point == Int(self.currentValue) + index * Int(gap * xUnit) ) {
+                    
+                    if currnetLabel == nil {
+                        let size:CGFloat = 13
+                        currnetLabel = UILabel(frame:CGRectMake(CGFloat(point)-size/2, -size, size, size))
+                        currnetLabel!.text = "▼"
+                        currnetLabel!.textColor = UIColor.redColor()
+                        currnetLabel!.adjustsFontSizeToFitWidth = true
+                        baseView.addSubview(currnetLabel!)
+                    }
+                    
+                } else {
+                    
+                    
+                    view.backgroundColor = UIColor(red: 48/255.0, green: (125 + colorCounter)/255.0, blue: 105/255.0, alpha: 1)
+                    
+                }
+                
+                baseView.addSubview(view)
+                
+                colorCounter = colorCounter + 1
+            }
             
-            print(frame)
+            str = str + Int(self.data[index]) +  Int(gap * xUnit)
+            
         }
         
     }
-    
-    /**
-     *  @prams スタート値 0 ~ 100
-     *  @prams エンド値 0 ~ 100
-     *  @prams viewのフレーム
-     */
-    func progressView(beginValue beginValue: CGFloat, endValue:CGFloat, frame: CGRect) -> UIView {
-        
-        let strColor = UIColor.colorWithRedValue(redValue: 48, greenValue: 150 + beginValue, blueValue: 105, alpha: 1)
-        let endColor = UIColor.colorWithRedValue(redValue: 48, greenValue: 150 + endValue, blueValue: 105, alpha: 1)
-        
-        let view: UIView = UIView(frame:frame)
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.frame = view.bounds
-        gradient.colors = [strColor.CGColor, endColor.CGColor]
-        view.layer.insertSublayer(gradient, atIndex: 0)
-        
-        gradient.startPoint = CGPoint(x: 0, y: 0)
-        gradient.endPoint = CGPoint(x: 1, y: 0)
-        
-        return view
-    }
 
-}
-
-extension UIColor {
-    static func colorWithRedValue(redValue redValue: CGFloat, greenValue: CGFloat, blueValue: CGFloat, alpha: CGFloat) -> UIColor {
-        return UIColor(red: redValue/255.0, green: greenValue/255.0, blue: blueValue/255.0, alpha: alpha)
-    }
 }

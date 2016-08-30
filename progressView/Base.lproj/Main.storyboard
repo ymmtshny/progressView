@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lZG-ST-e0S">
-                                <rect key="frame" x="60" y="236" width="480" height="128"/>
+                                <rect key="frame" x="60" y="295" width="480" height="10"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="Hxj-8s-eBR"/>
+                                    <constraint firstAttribute="height" constant="10" id="Hxj-8s-eBR"/>
                                 </constraints>
                             </view>
                         </subviews>
