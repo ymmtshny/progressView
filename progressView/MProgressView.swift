@@ -14,7 +14,7 @@ class MProgressView{
     private var lablePoints = [CGFloat]()
     private var currentValue:CGFloat = 0
     private var data = [CGFloat]()
-    private let gap:CGFloat = 5
+    private let gap:CGFloat = 2
     private var sum:CGFloat = 0
     private var currnetLabel: UILabel?  = nil
     
@@ -59,6 +59,14 @@ class MProgressView{
                     label.layer.cornerRadius = size/2
                     label.clipsToBounds = true
                     baseView.addSubview(label)
+                    
+                    //縦線
+                    let line = UIView(frame: CGRectMake(CGRectGetMidX(label.frame),
+                                             CGRectGetMaxY(label.frame) + 5,
+                                             1.0,
+                                             160.0))
+                    line.backgroundColor = UIColor.grayColor()
+                    baseView.addSubview(line)
                 }
                 
                 let view = UIView(frame: CGRectMake(CGFloat(point), 0, xUnit, CGRectGetHeight(baseView.frame)))

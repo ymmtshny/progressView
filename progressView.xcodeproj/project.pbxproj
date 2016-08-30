@@ -15,6 +15,7 @@
 		C5C562731D741870000EB639 /* GradationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C562721D741870000EB639 /* GradationView.swift */; };
 		C5C5627B1D74CA2D000EB639 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C5627A1D74CA2D000EB639 /* ProgressView.swift */; };
 		C5C562811D757590000EB639 /* MProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C562801D757590000EB639 /* MProgressView.swift */; };
+		C5C562831D75C011000EB639 /* DrawLineGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C562821D75C011000EB639 /* DrawLineGraph.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		C5C562721D741870000EB639 /* GradationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradationView.swift; sourceTree = "<group>"; };
 		C5C5627A1D74CA2D000EB639 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		C5C562801D757590000EB639 /* MProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MProgressView.swift; sourceTree = "<group>"; };
+		C5C562821D75C011000EB639 /* DrawLineGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawLineGraph.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				C5C5627A1D74CA2D000EB639 /* ProgressView.swift */,
 				C5C562801D757590000EB639 /* MProgressView.swift */,
 				C5C562621D74185A000EB639 /* ViewController.swift */,
+				C5C562821D75C011000EB639 /* DrawLineGraph.swift */,
 				C5C562641D74185A000EB639 /* Main.storyboard */,
 				C5C562671D74185A000EB639 /* Assets.xcassets */,
 				C5C562691D74185A000EB639 /* LaunchScreen.storyboard */,
@@ -148,6 +151,7 @@
 				C5C5627B1D74CA2D000EB639 /* ProgressView.swift in Sources */,
 				C5C562611D74185A000EB639 /* AppDelegate.swift in Sources */,
 				C5C562811D757590000EB639 /* MProgressView.swift in Sources */,
+				C5C562831D75C011000EB639 /* DrawLineGraph.swift in Sources */,
 				C5C562731D741870000EB639 /* GradationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

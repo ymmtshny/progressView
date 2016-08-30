@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var baseView: UIView!
     
+    @IBOutlet weak var lineGraphView: DrawLineGraph!
     
     
     override func viewDidLoad() {
