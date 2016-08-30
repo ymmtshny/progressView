@@ -147,13 +147,13 @@ class ProgressView {
             
             point = point + CGFloat(dictinary[key]!) *  xUnit
             
-            let view = UIView(frame:CGRectMake(point,
-                0,
-                gap * CGFloat( Double(100) / Double(sum)) *  xUnit,
-                CGRectGetHeight(baseView.frame)))
-            view.backgroundColor = UIColor.blackColor()
-            
-            baseView.addSubview(view)
+//            let view = UIView(frame:CGRectMake(point,
+//                0,
+//                gap * CGFloat( Double(100) / Double(sum)) *  xUnit,
+//                CGRectGetHeight(baseView.frame)))
+//            view.backgroundColor = UIColor.blackColor()
+//            
+//            baseView.addSubview(view)
             
             point = point +  gap  *  xUnit
             
@@ -164,7 +164,7 @@ class ProgressView {
             label.text = "stg"
             label.font = label.font.fontWithSize(10)
             label.textAlignment = .Center
-            label.center.x = view.center.x
+            label.center.x = point
             label.backgroundColor = UIColor.greenColor()
             label.layer.cornerRadius = size/2
             label.clipsToBounds = true
