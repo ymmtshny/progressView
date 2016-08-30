@@ -38,31 +38,50 @@ class MProgressView{
         }
         
     
-        var str =  0
+        var start =  0
         var colorCounter:CGFloat = 0
         for index in 0...self.data.count - 1  {
             
-            for point in Int(str)...Int(self.data[index]) + str {
+            for point in Int(start)...Int(self.data[index]) + start {
+                
+                //ステージラベル
+                if point == Int(start) {
+                    let size:CGFloat = 20
+                    let label = UILabel(frame: CGRectMake(CGFloat(point) - size/2,
+                                               CGRectGetHeight(baseView.frame) + 5,
+                                               size,
+                                               size))
+                    label.text = "stg"
+                    label.textAlignment = .Center
+                    label.font = UIFont.systemFontOfSize(10)
+                    label.textColor = UIColor.blackColor()
+                    label.backgroundColor = UIColor.greenColor()
+                    label.layer.cornerRadius = size/2
+                    label.clipsToBounds = true
+                    baseView.addSubview(label)
+                }
                 
                 let view = UIView(frame: CGRectMake(CGFloat(point), 0, xUnit, CGRectGetHeight(baseView.frame)))
                 
+                //現在値以降(グレー)
                 if(point > Int(self.currentValue) + (index ) * Int(gap * xUnit ) ) {
                     view.backgroundColor = UIColor.grayColor()
                     
+                //現在値
                 } else if(point == Int(self.currentValue) + index * Int(gap * xUnit) ) {
                     
                     if currnetLabel == nil {
                         let size:CGFloat = 13
                         currnetLabel = UILabel(frame:CGRectMake(CGFloat(point)-size/2, -size, size, size))
                         currnetLabel!.text = "▼"
-                        currnetLabel!.textColor = UIColor.redColor()
+                        currnetLabel!.textColor = UIColor.greenColor()
                         currnetLabel!.adjustsFontSizeToFitWidth = true
                         baseView.addSubview(currnetLabel!)
                     }
-                    
+                
+                //すでに経過
                 } else {
-                    
-                    
+                
                     view.backgroundColor = UIColor(red: 48/255.0, green: (125 + colorCounter)/255.0, blue: 105/255.0, alpha: 1)
                     
                 }
@@ -72,7 +91,7 @@ class MProgressView{
                 colorCounter = colorCounter + 1
             }
             
-            str = str + Int(self.data[index]) +  Int(gap * xUnit)
+            start = start + Int(self.data[index]) +  Int(gap * xUnit)
             
         }
         
