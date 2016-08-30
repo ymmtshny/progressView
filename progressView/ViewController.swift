@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIView!
     
+    @IBOutlet weak var baseView: UIView!
     
     
     
@@ -19,41 +20,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var data:[CGFloat] = [10, 20, 15, 35, 20]
-        let gapCount = data.count - 1
-        let gap:CGFloat = 1
-        
-        var sum:CGFloat = 0
-        for value in data {
-            sum += value
-        }
-        
-        sum = sum +  gap * CGFloat(gapCount)
-        
-        for index in 0...data.count - 1 {
-            data[index] = data[index] * 100 / sum
-        }
-        
-        print(data)
-        
-        var beginValue = CGFloat(0)
-        for value in data {
-            
-            let frame = CGRectMake(CGRectGetWidth(self.view.frame) * (beginValue) / 100 ,
-                                   50,
-                                   CGRectGetWidth(self.view.frame) * value / 100,
-                                   8)
-            
-            let test = progressView(beginValue:beginValue ,
-                                    endValue:(beginValue + value),
-                                    frame :frame)
-            
-            beginValue = beginValue + value + gap
-            
-            self.view.addSubview(test)
-            
-            print(frame)
-        }
+       
         
         
         
@@ -86,19 +53,9 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let dictinary = ["0":5,
-                         "1":10,
-                         "2":30,
-                         "3":50,
-                         "4":20]
-        
-        let current = CGFloat(70)
-        
-        let test = ProgressView()
-        test.setup(data:dictinary,current: current,baseView:progressView)
-        test.addArrowOnCurrentProgress()
-        
-        
+        //相対値で決まる。
+        let data:[CGFloat] = [10, 50, 15, 35, 20]
+        MProgressView().setup(data:data, baseView:baseView)
         
     }
     
@@ -110,10 +67,6 @@ class ViewController: UIViewController {
     
 }
 
-extension UIColor {
-    static func colorWithRedValue(redValue redValue: CGFloat, greenValue: CGFloat, blueValue: CGFloat, alpha: CGFloat) -> UIColor {
-        return UIColor(red: redValue/255.0, green: greenValue/255.0, blue: blueValue/255.0, alpha: alpha)
-    }
-}
+
 
 
